@@ -15,5 +15,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-   dd(User::search('*')->get());
+    $page = 1;
+    $perPage = 1000;
+    $users=User::search('*')->paginate(100);
+    foreach ($users as $user){
+        dump($user->name);
+    }
 });
