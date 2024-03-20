@@ -47,6 +47,13 @@ services:
         - '-p${DB_PASSWORD}'
       retries: 3
       timeout: 5s
+  phpmyadmin:
+    image: phpmyadmin
+    restart: always
+    ports:
+      - 8085:80
+    environment:
+      - PMA_ARBITRARY=1
   setup:
     image: docker.elastic.co/elasticsearch/elasticsearch:${STACK_VERSION}
     volumes:
