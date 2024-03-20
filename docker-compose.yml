@@ -56,21 +56,22 @@ services:
       - PMA_ARBITRARY=1
 
   elasticsearch:
-    image: elasticsearch:7.17.18
+    image: elasticsearch:8.7.1
     container_name: elasticsearch
     environment:
       - discovery.type=single-node
       - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+      - xpack.security.enabled=false
     ports:
       - "9200:9200"
     networks:
       - elk-network
 
   kibana:
-    image: kibana:7.17.18
+    image: kibana:8.7.1
     container_name: kibana
     environment:
-      - ELASTICSEARCH_HOSTS=http://elasticsearch:9200
+      - ELASTICSEARCH_PASSWORD=Admin@1221
     ports:
       - "5601:5601"
     depends_on:
